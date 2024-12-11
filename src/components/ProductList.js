@@ -1,51 +1,53 @@
-import React, {useEffect, useState} from "react";
-import Carousel from "./layouts/Carousel";
-import { Link } from "react-router-dom";
-import axios from "axios";
+// ProductList.js
+import React, { useEffect, useState, useContext } from 'react';
+import Carousel from './layouts/Carousel';
+import axios from 'axios';
+import { CartContext } from '../context/CartContext';
+import ProductWrapper from './ProductWrapper'; // Import ProductWrapper
+import styles from './ProductList.module.css';
 
 function ProductList() {
-
   const [products, setProducts] = useState([]);
+  const { addToCart } = useContext(CartContext); // Get addToCart function from context
 
-
-  useEffect(()=>{
-    axios.get('https://fakestoreapi.com/products')
+  useEffect(() => {
+    axios
+      .get('https://fakestoreapi.com/products')
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
-  }, [])
-    
+  }, []);
+
+  // Get the last 5 products
+  const lastFiveProducts = products.slice(-5);
+  const highlightedProducts = products.sort((a, b)=>b-a).slice(0,8);
+  const lastFiveProductsLabel = "New items"
+  const highlightedProductsLabel = "Highlighted items"
+
   return (
     <div>
-     <Carousel />
-
-     <div>
-     <div className="album py-5 bg-light">
-        <div className="container">
-    
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-              {products.map((product) => (
-                <div key={product.id} className="col">
-                  <div className="card shadow-sm">
-                    <img src={product.image} alt={product.title} style={{'height' : '200px', 'objectFit' : 'contain'}} className="bd-placeholder-img card-img-top" />
-                    <div className="card-body">
-                      <p className="card-text">{product.title}</p>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div className="btn-group">
-                        <Link to={`/product/${product.id}`}><button type="button" className="btn btn-sm btn-outline-secondary">Pogledaj</button></Link>
-                        </div>
-                        <small className="text-muted">{product.price}$</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          
-          </div>
-        </div>
-      </div>
-     </div>
-
-      
+      <Carousel />
+      <ProductWrapper
+        label={lastFiveProductsLabel}
+        products={lastFiveProducts} // Pass the last 5 products
+        className={styles.customClass} // Apply any custom class if needed
+        fullWidth={true} // Make the wrapper full width
+        addToCart={addToCart} // Pass the addToCart function to ProductWrapper
+        cols1={1}    // 1 column for extra small screens (xs)
+        colsSm={2}   // 2 columns for small screens (sm)
+        colsMd={3}   // 3 columns for medium screens (md)
+        colsLg={5}   // 5 columns for large screens (lg)
+      ></ProductWrapper>
+      <ProductWrapper
+        label={highlightedProductsLabel}
+        products={highlightedProducts} // Pass the last 5 products
+        className={styles.customClass} // Apply any custom class if needed
+        fullWidth={true} // Make the wrapper full width
+        addToCart={addToCart} // Pass the addToCart function to ProductWrapper
+        cols1={1}    // 1 column for extra small screens (xs)
+        colsSm={2}   // 2 columns for small screens (sm)
+        colsMd={3}   // 3 columns for medium screens (md)
+        colsLg={4}   // 5 columns for large screens (lg)
+      ></ProductWrapper>
     </div>
   );
 }

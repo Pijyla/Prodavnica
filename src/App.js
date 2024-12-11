@@ -10,6 +10,8 @@ import Signup from './components/Signup';
 import Footer from "./components/layouts/Footer";
 import Header from "./components/layouts/Header";
 import Checkout from "./components/Checkout";
+import SearchForm from './components/layouts/SearchForm';
+import SearchResults from './components/layouts/SearchResults';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
             <Header />
             <main>
                 <div className="container">
+                    <SearchForm />
                     <Routes>
                       <Route path="/" element={<ProductList />} />
                       <Route path="/product/:id" element={<ProductDetails />} />
@@ -29,6 +32,8 @@ function App() {
                       <Route path="/login" element={<Login />} />
                       <Route path="/signup" element={<Signup />} />
                       <Route path="/checkout" element={<Checkout />} />
+                      <Route path="/" element={<SearchForm />} />
+                      <Route path="/search-results" element={<SearchResults />} />
                     </Routes>
                     </div>
                 </main>

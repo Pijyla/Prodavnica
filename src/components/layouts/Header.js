@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SearchForm from "./SearchForm";
 
 function Header() {
   return (
@@ -38,9 +39,7 @@ function Header() {
         <Link to="/" className="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
             <span className="fs-4">Cortex-Commerce</span>
         </Link>
-        <form className="col-12 col-lg-auto mb-3 mb-lg-0">
-            <input type="search" className="form-control" placeholder="Pretraga..." aria-label="Pretraga" />
-        </form>
+        <SearchForm />
     </div>
 </header>
       </div>

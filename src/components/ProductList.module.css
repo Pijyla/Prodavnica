@@ -1,0 +1,10 @@
+.customClass {
+    /* Example of applying full-width container styles */
+    max-width: 100%;
+    margin: 0 auto; /* Center the container */
+  }
+  
+  .product-wrapper-fullwidth {
+    width: 100%;
+    margin: 0 auto;
+  }  

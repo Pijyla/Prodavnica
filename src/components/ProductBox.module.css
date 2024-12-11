@@ -1,0 +1,30 @@
+/* ProductBox.module.css */
+
+.productTitle {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;  /* Limit to 3 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+  
+  .card {
+    min-height: 200px;   /* Default height */
+    transition: all 0.3s ease;  /* Smooth transition */
+  }
+  
+  .singleLine .card {
+    min-height: 200px; /* Increase height for one-line title */
+  }
+  
+  .price {
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;  /* Optional: space after the price */
+  }
+  
+  
